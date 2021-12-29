@@ -1,5 +1,5 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user.routes');
 require('dotenv').config({path: './config/.env'});
 // require('dotenv').config({path: './congif/.env'})
@@ -8,14 +8,14 @@ const app = express();
 
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 //obsolète?
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 
 //routes
-app.use('api/user' , userRoutes);
+app.use('/api/user' , userRoutes);
 //server
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`);
